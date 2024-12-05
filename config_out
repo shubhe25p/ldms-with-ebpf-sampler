@@ -1,0 +1,493 @@
+configure: loading site script /usr/share/site/x86_64-unknown-linux-gnu
+checking for gcc... clang
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether clang accepts -g... yes
+checking for clang option to accept ISO C89... none needed
+checking whether clang understands -c and -o together... yes
+checking whether the compiler is clang... yes
+checking for compiler option needed when checking for declarations... -Werror=implicit-function-declaration
+checking how to run the C preprocessor... clang -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for Minix Amsterdam compiler... no
+checking for ar... ar
+checking for ranlib... ranlib
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for style of include used by make... GNU
+checking whether make supports nested variables... yes
+checking how to create a pax tar archive... gnutar
+checking dependency style of clang... gcc3
+checking whether make supports nested variables... (cached) yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by clang... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... (cached) ranlib
+checking command to parse /usr/bin/nm -B output from clang object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if clang supports -fno-rtti -fno-exceptions... yes
+checking for clang option to produce PIC... -fPIC -DPIC
+checking if clang PIC flag -fPIC -DPIC works... yes
+checking if clang static flag -static works... no
+checking if clang supports -c -o file.o... yes
+checking if clang supports -c -o file.o... (cached) yes
+checking whether the clang linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for C compiler option to allow warnings... -Wno-error
+checking for ld... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking for shared library run path origin... done
+checking for flex... flex
+checking lex output file root... lex.yy
+checking lex library... -lfl
+checking whether yytext is a pointer... yes
+checking whether ln -s works... yes
+checking for bison... bison -y
+checking whether we are using the GNU C++ compiler... yes
+checking whether clang++ accepts -g... yes
+checking dependency style of clang++... gcc3
+checking how to run the C++ preprocessor... clang++ -E
+checking for ld used by clang++... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the clang++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for clang++ option to produce PIC... -fPIC -DPIC
+checking if clang++ PIC flag -fPIC -DPIC works... yes
+checking if clang++ static flag -static works... no
+checking if clang++ supports -c -o file.o... yes
+checking if clang++ supports -c -o file.o... (cached) yes
+checking whether the clang++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking size of long... 8
+checking size of long double... 16
+checking whether clang and cc understand -c and -o together... yes
+checking for an ANSI C-conforming const... yes
+checking for flexible array members... yes
+configure: Using plugin directory ovis-ldms
+checking whether C compiler accepts -fdiagnostics-color=auto... yes
+checking 32-bit host C ABI... no
+checking for ELF binary format... yes
+checking for the common suffixes of directories in the library search path... lib,lib,lib64
+checking for libjansson... no
+checking for library containing clock_gettime... none required
+configure: Disable ovis_event module NOT requested
+configure: Disable mmalloc module NOT requested
+configure: Disable ovis_ctrl module NOT requested
+configure: Disable ovis_auth module NOT requested
+configure: Disable zap module NOT requested
+configure: Enable rdma module NOT requested
+configure: Enable nola module NOT requested
+configure: Enable fabric module NOT requested
+configure: Enable ugni module NOT requested
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking whether compiling and linking against OpenSSL works... yes
+configure: Disable sock module NOT requested
+configure: Enable ssl module NOT requested
+configure: Enable zaptest module NOT requested
+configure: Enable ovis_event_test module NOT requested
+configure: Enable ovis_ev_test module NOT requested
+configure: Enable etc module NOT requested
+configure: Disable scripts module NOT requested
+configure: Enable slurmtest module NOT requested
+configure: Enable developer module NOT requested
+configure: Enable doc module NOT requested
+configure: Enable doc-html module NOT requested
+configure: Enable doc-latex module NOT requested
+configure: Disable doc-man module NOT requested
+configure: Enable doc-graph module NOT requested
+configure: Enable ldms-test module NOT requested
+configure: Disable mmap module NOT requested
+configure: Disable perf module NOT requested
+configure: Enable yaml module NOT requested
+configure: Disable store module NOT requested
+configure: Disable flatfile module NOT requested
+configure: Disable csv module NOT requested
+configure: Enable rabbitkw module NOT requested
+configure: Enable rabbitv3 module NOT requested
+configure: Enable amqp module NOT requested
+configure: Enable tutorial-store module NOT requested
+checking for libpq... no
+configure: Enable gpcdlocal module NOT requested
+configure: Enable sos module NOT requested
+checking librdkafka/rdkafka.h usability... no
+checking librdkafka/rdkafka.h presence... no
+checking for librdkafka/rdkafka.h... no
+checking for rd_kafka_new in -lrdkafka... no
+checking for librdkafka... no
+checking for libavro... no
+checking for libserdes... no
+configure: Disable sampler module NOT requested
+configure: Enable kgnilnd module NOT requested
+configure: Disable lustre module NOT requested
+configure: Enable jobid module NOT requested
+configure: Disable clock module NOT requested
+configure: Disable synthetic module NOT requested
+configure: Disable varset module NOT requested
+configure: Disable lnet_stats module NOT requested
+configure: Disable meminfo module NOT requested
+configure: Enable gpumetrics module NOT requested
+configure: Disable coretemp module NOT requested
+configure: Enable filesingle module NOT requested
+configure: Enable msr_interlagos module NOT requested
+configure: Disable array_example module NOT requested
+configure: Disable hello_stream module NOT requested
+configure: Disable blob_stream module NOT requested
+configure: Enable perfevent module NOT requested
+configure: Enable mpi_sampler module NOT requested
+configure: Enable mpi_noprofile module NOT requested
+configure: Disable procinterrupts module NOT requested
+configure: Disable procnet module NOT requested
+configure: Disable procnetdev module NOT requested
+configure: Disable procnfs module NOT requested
+configure: Disable dstat module NOT requested
+configure: Disable procstat module NOT requested
+configure: Disable llnl-edac module NOT requested
+configure: Enable fptrans module NOT requested
+configure: Disable tsampler module NOT requested
+configure: Disable cray_power_sampler module NOT requested
+configure: Disable loadavg module NOT requested
+configure: Disable vmstat module NOT requested
+configure: Disable fs_ebpf module NOT requested
+configure: Disable procdiskstats module NOT requested
+configure: Enable cray_system_sampler module NOT requested
+configure: Disable spaceless_names module NOT requested
+configure: Enable aries-mmr module NOT requested
+configure: Enable aries_linkstatus module NOT requested
+configure: Enable atasmart module NOT requested
+configure: Disable generic_sampler module NOT requested
+configure: Enable switchx module NOT requested
+configure: Enable darshan module NOT requested
+configure: Enable kokkos module NOT requested
+configure: Enable proc-streams module NOT requested
+configure: Disable jobinfo-sampler module NOT requested
+configure: Enable ibm_occ module NOT requested
+configure: Enable appinfo module NOT requested
+configure: Disable app-sampler module NOT requested
+configure: Enable store-app module NOT requested
+configure: Enable test_sampler module NOT requested
+configure: Enable list_sampler module NOT requested
+configure: Enable record_sampler module NOT requested
+configure: Enable grptest module NOT requested
+configure: Enable ipmireader module NOT requested
+configure: Enable tutorial-sampler module NOT requested
+checking for libvariorum... no
+configure: Enable influx module NOT requested
+checking for libpapi... no
+checking for libpfm... no
+checking for libibmad... no
+checking for libibumad... no
+checking for libosmcomp... no
+checking iba/ib_types.h usability... no
+checking iba/ib_types.h presence... no
+checking for iba/ib_types.h... no
+checking complib/cl_nodenamemap.h usability... no
+checking complib/cl_nodenamemap.h presence... no
+checking for complib/cl_nodenamemap.h... no
+checking for tx2mon/mc_oper_region.h... no
+configure: Enable gemini-gpcdr module NOT requested
+configure: Enable aries-gpcdr module NOT requested
+configure: Enable cray-nvidia module NOT requested
+configure: Enable cray-nvidia-inc module NOT requested
+configure: Enable cray-hss-devel module NOT requested
+configure: Enable munge module NOT requested
+checking for pthread_mutex_init in -lpthread... yes
+checking for library containing clock_gettime... (cached) none required
+configure: Disable readline module NOT requested
+checking for a readline compatible library... no
+checking for GEOPM telemetry library... checking geopm_pio.h usability... no
+checking geopm_pio.h presence... no
+checking for geopm_pio.h... no
+checking geopm_topo.h usability... no
+checking geopm_topo.h presence... no
+checking for geopm_topo.h... no
+checking for geopm_pio_push_signal in -lgeopmd... no
+checking for geopm_pio_reset in -lgeopmd... no
+check
+checking gurt/common.h usability... no
+checking gurt/common.h presence... no
+checking for gurt/common.h... no
+checking gurt/telemetry_common.h usability... no
+checking gurt/telemetry_common.h presence... no
+checking for gurt/telemetry_common.h... no
+checking gurt/telemetry_consumer.h usability... no
+checking gurt/telemetry_consumer.h presence... no
+checking for gurt/telemetry_consumer.h... no
+checking for d_tm_init in -lgurt... no
+checking for DAOS telemetry support... no
+checking slurm/spank.h usability... no
+checking slurm/spank.h presence... no
+checking for slurm/spank.h... no
+configure: Disable spank_subscriber module NOT requested
+checking linux/netlink.h usability... yes
+checking linux/netlink.h presence... yes
+checking for linux/netlink.h... yes
+checking for a Python interpreter with version >= 3.6... python
+checking for python... /home/osuse/miniconda3/bin/python
+checking for python version... 3.1
+checking for python platform... linux
+checking for python script directory... ${prefix}/lib/python3.12/site-packages
+checking for python extension module directory... ${exec_prefix}/lib/python3.12/site-packages
+checking for python3.1... (cached) /home/osuse/miniconda3/bin/python
+checking for a version of Python >= '2.1.0'... yes
+checking for a version of Python >='3.6'... yes
+checking for the sysconfig Python package... yes
+checking for Python include path... -I/home/osuse/miniconda3/include/python3.12
+checking for Python library path... -L/home/osuse/miniconda3/lib -lpython3.12
+checking for Python site-packages path... /home/osuse/miniconda3/lib/python3.12/site-packages
+checking for Python platform specific site-packages path... 
+checking python extra libraries... -lpthread -ldl  -lutil -lm
+checking python extra linking flags... -Xlinker -export-dynamic
+checking consistency of all components of python development environment... yes
+checking python module: "argparse"... yes
+checking for version 1.1 or higher of "argparse"... yes
+checking for a version of Cython >= 0.25... 
+configure: Enable libgenders module NOT requested
+configure: Enable genderssystemd module NOT requested
+configure: Enable csv_check module NOT requested
+configure: Enable third-plugins module NOT requested
+Using git SHA
+checking for dcgmInit in -ldcgm... no
+checking for libcxi... no
+checking for bpf_obj_get in -lbpf... yes
+checking for bpf_object__open in -lbpf... yes
+checking bpf/bpf.h usability... yes
+checking bpf/bpf.h presence... yes
+checking for bpf/bpf.h... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating util/Makefile
+config.status: creating util/relocation/Makefile
+config.status: creating util/sample_init_scripts/Makefile
+config.status: creating util/sample_init_scripts/genders/Makefile
+config.status: creating util/sample_init_scripts/genders/man/Makefile
+config.status: creating util/sample_init_scripts/genders/src/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/ClusterGenders/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/ClusterSecrets/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/plugins-conf/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/debug/Makefile
+config.status: creating util/sample_init_scripts/genders/systemd/services/Makefile
+config.status: creating util/sample_init_scripts/genders/sysv/Makefile
+config.status: creating util/sample_init_scripts/genders/sysv/etc/Makefile
+config.status: creating util/sample_init_scripts/genders/sysv/etc/init.d/Makefile
+config.status: creating util/sample_init_scripts/genders/examples/Makefile
+config.status: creating lib/Doxyfile
+config.status: creating lib/Makefile
+config.status: creating lib/src/Makefile
+config.status: creating lib/src/ovis_json/Makefile
+config.status: creating lib/src/third/Makefile
+config.status: creating lib/src/coll/Makefile
+config.status: creating lib/src/mmalloc/Makefile
+config.status: creating lib/src/ovis_ev/Makefile
+config.status: creating lib/src/ovis_event/Makefile
+config.status: creating lib/src/ovis_ctrl/Makefile
+config.status: creating lib/src/ovis_util/Makefile
+config.status: creating lib/src/ovis_auth/Makefile
+config.status: creating lib/src/ovis_ref/Makefile
+config.status: creating lib/src/ovis_log/Makefile
+config.status: creating lib/src/zap/Makefile
+config.status: creating lib/src/zap/rdma/Makefile
+config.status: creating lib/src/zap/fabric/Makefile
+config.status: creating lib/src/zap/sock/Makefile
+config.status: creating lib/src/zap/ugni/Makefile
+config.status: creating lib/src/zap/test/Makefile
+config.status: creating lib/etc/Makefile
+config.status: creating lib/etc/ovis/Makefile
+config.status: creating lib/etc/ld.so.conf.d/Makefile
+config.status: creating gnulib/Makefile
+config.status: creating ldms/Makefile
+config.status: creating ldms/src/Makefile
+config.status: creating ldms/src/core/Makefile
+config.status: creating ldms/src/auth/Makefile
+config.status: creating ldms/src/store/Makefile
+config.status: creating ldms/src/sampler/Makefile
+config.status: creating ldms/src/decomp/Makefile
+config.status: creating ldms/src/decomp/static/Makefile
+config.status: creating ldms/src/decomp/as_is/Makefile
+config.status: creating ldms/src/decomp/flex/Makefile
+config.status: creating ldms/src/contrib/Makefile
+config.status: creating ldms/src/sampler/blob_stream/Makefile
+config.status: creating ldms/src/store/stream/Makefile
+config.status: creating ldms/src/store/test/Makefile
+config.status: creating ldms/src/store/kokkos/Makefile
+config.status: creating ldms/src/store/proc_store/Makefile
+config.status: creating ldms/src/store/darshan/Makefile
+config.status: creating ldms/src/store/kokkos_appmon/Makefile
+config.status: creating ldms/src/store/papi/Makefile
+config.status: creating ldms/src/store/slurm/Makefile
+config.status: creating ldms/src/store/influx/Makefile
+config.status: creating ldms/src/store/kafka/Makefile
+config.status: creating ldms/src/store/avro_kafka/Makefile
+config.status: creating ldms/src/store/store_flatfile/Makefile
+config.status: creating ldms/src/store/store_app/Makefile
+config.status: creating ldms/src/contrib/store/Makefile
+config.status: creating ldms/src/contrib/store/tutorial/Makefile
+config.status: creating ldms/src/contrib/store/timescale/Makefile
+config.status: creating ldms/src/sampler/sampler_atasmart/Makefile
+config.status: creating ldms/src/sampler/clock/Makefile
+config.status: creating ldms/src/sampler/dcgm_sampler/Makefile
+config.status: creating ldms/src/sampler/dstat/Makefile
+config.status: creating ldms/src/sampler/hello_stream/Makefile
+config.status: creating ldms/src/sampler/hello_stream/stream_configs/Makefile
+config.status: creating ldms/src/sampler/filesingle/Makefile
+config.status: creating ldms/src/sampler/fptrans/Makefile
+config.status: creating ldms/src/sampler/lustre/Makefile
+config.status: creating ldms/src/sampler/job_info/Makefile
+config.status: creating ldms/src/sampler/job_info_slurm/Makefile
+config.status: creating ldms/src/sampler/llnl/Makefile
+config.status: creating ldms/src/sampler/lustre_client/Makefile
+config.status: creating ldms/src/sampler/lustre_mdt/Makefile
+config.status: creating ldms/src/sampler/lustre_ost/Makefile
+config.status: creating ldms/src/sampler/lustre_mdc/Makefile
+config.status: creating ldms/src/sampler/lnet_stats/Makefile
+config.status: creating ldms/src/sampler/shm/Makefile
+config.status: creating ldms/src/sampler/shm/shm_util/Makefile
+config.status: creating ldms/src/sampler/shm/mpi_profiler/Makefile
+config.status: creating ldms/src/sampler/cray_system_sampler/Makefile
+config.status: creating ldms/src/sampler/aries_mmr/Makefile
+config.status: creating ldms/src/sampler/aries_mmr/aries_mmr_set_configs/Makefile
+config.status: creating ldms/src/sampler/ibmad_sampler/Makefile
+config.status: creating ldms/src/sampler/ibmad_records_sampler/Makefile
+config.status: creating ldms/src/sampler/ibnet/Makefile
+config.status: creating ldms/src/sampler/sysclassib/Makefile
+config.status: creating ldms/src/sampler/opa2/Makefile
+config.status: creating ldms/src/sampler/perfevent/Makefile
+config.status: creating ldms/src/sampler/procnet/Makefile
+config.status: creating ldms/src/sampler/procnfs/Makefile
+config.status: creating ldms/src/sampler/procnetdev/Makefile
+config.status: creating ldms/src/sampler/procdiskstats/Makefile
+config.status: creating ldms/src/sampler/rdc_sampler/Makefile
+config.status: creating ldms/src/sampler/slurm/Makefile
+config.status: creating ldms/src/sampler/netlink/Makefile
+config.status: creating ldms/src/sampler/spank/Makefile
+config.status: creating ldms/src/sampler/papi/Makefile
+config.status: creating ldms/src/sampler/appinfo_lib/Makefile
+config.status: creating ldms/src/sampler/kgnilnd/Makefile
+config.status: creating ldms/src/sampler/tx2mon/Makefile
+config.status: creating ldms/src/sampler/msr_interlagos/Makefile
+config.status: creating ldms/src/sampler/meminfo/Makefile
+config.status: creating ldms/src/contrib/sampler/gpu_metrics_sampler/Makefile
+config.status: creating ldms/src/sampler/procinterrupts/Makefile
+config.status: creating ldms/src/sampler/procnetdev2/Makefile
+config.status: creating ldms/src/sampler/variable/Makefile
+config.status: creating ldms/src/sampler/procstat/Makefile
+config.status: creating ldms/src/sampler/procstat2/Makefile
+config.status: creating ldms/src/sampler/loadavg/Makefile
+config.status: creating ldms/src/sampler/vmstat/Makefile
+config.status: creating ldms/src/sampler/ebpf_sampler/Makefile
+config.status: creating ldms/src/sampler/coretemp/Makefile
+config.status: creating ldms/src/sampler/examples/Makefile
+config.status: creating ldms/src/sampler/examples/array_example/Makefile
+config.status: creating ldms/src/sampler/examples/synthetic/Makefile
+config.status: creating ldms/src/sampler/examples/test_sampler/Makefile
+config.status: creating ldms/src/sampler/examples/list_sampler/Makefile
+config.status: creating ldms/src/sampler/examples/record_sampler/Makefile
+config.status: creating ldms/src/sampler/ibm_occ/Makefile
+config.status: creating ldms/src/sampler/syspapi/Makefile
+config.status: creating ldms/src/sampler/app_sampler/Makefile
+config.status: creating ldms/src/sampler/slingshot_metrics/Makefile
+config.status: creating ldms/src/sampler/slingshot_info/Makefile
+config.status: creating ldms/src/sampler/slingshot_switch/Makefile
+config.status: creating ldms/src/contrib/sampler/Makefile
+config.status: creating ldms/src/contrib/sampler/daos/Makefile
+config.status: creating ldms/src/contrib/sampler/daos/test/Makefile
+config.status: creating ldms/src/contrib/sampler/ipmireader/Makefile
+config.status: creating ldms/src/contrib/sampler/tutorial/Makefile
+config.status: creating ldms/src/contrib/sampler/variorum_sampler/Makefile
+config.status: creating ldms/src/contrib/sampler/geopm_sampler/Makefile
+config.status: creating ldms/src/third-plugins/Makefile
+config.status: creating ldms/src/ldmsd/Makefile
+config.status: creating ldms/src/ldmsd/test/Makefile
+config.status: creating ldms/scripts/Makefile
+config.status: creating ldms/src/test/Makefile
+config.status: creating ldms/etc/Makefile
+config.status: creating ldms/etc/systemd/Makefile
+config.status: creating ldms/python/Makefile
+config.status: creating ldms/python/ldmsd/Makefile
+config.status: creating ldms/python/cmds/Makefile
+config.status: creating ldms/Doxyfile
+config.status: creating ldms/scripts/ldmsd
+config.status: creating ldms/scripts/envldms.sh
+config.status: creating ldms/man/Makefile
+config.status: creating util/relocation/bld_manifest.sh
+config.status: creating util/relocation/relocate-paths.sh
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/ldmsd
+config.status: creating util/sample_init_scripts/genders/systemd/etc/sysconfig/ldms.d/ldms-functions
+config.status: creating util/sample_init_scripts/genders/systemd/ldmsd-pre-systemd
+config.status: creating util/sample_init_scripts/genders/systemd/ldmsd-wrapper.sh
+config.status: creating util/sample_init_scripts/genders/sysv/etc/init.d/ldmsd
+config.status: creating util/sample_init_scripts/genders/sysv/etc/init.d/ldmsd.template
+config.status: creating util/sample_init_scripts/genders/sysv/ldmsd-pre-sysvinit
+config.status: creating ldms/scripts/ldms-wrapper
+config.status: creating ldms/scripts/ldms-static-test.sh
+config.status: creating ldms/scripts/pll-ldms-static-test.sh
+config.status: creating ldms/scripts/ldms_ban.sh
+config.status: creating ldms/scripts/ldms-plugins.sh
+config.status: creating ldms/scripts/ldms-py-subset_test.sh
+config.status: creating ldms/scripts/ldms-py-varset.sh
+config.status: creating ldms/scripts/ldms-py-syslog.sh
+config.status: creating ldms/scripts/ldms-py-rename.sh
+config.status: creating ldms/scripts/ldms-meminfo.sh
+config.status: creating ldms/scripts/ldms_local_opa2test.sh
+config.status: creating ldms/scripts/ldms-l2_test.sh
+config.status: creating ldms/src/test/ldms-run-static-tests.test
+config.status: creating ldms/src/test/ldms-static-test-list.sh
+config.status: creating ldms/src/test/ldms-static-test-bypass
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing ovis-ldms-config.h commands
+config.status: creating ovis-ldms-config.h
+config.status: executing libtool commands

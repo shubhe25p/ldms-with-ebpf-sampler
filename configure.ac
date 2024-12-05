@@ -347,6 +347,7 @@ dnl cray_power_sampler won't build with --disable-tsampler
 
 OPTION_DEFAULT_ENABLE([loadavg], [ENABLE_LOADAVG])
 OPTION_DEFAULT_ENABLE([vmstat], [ENABLE_VMSTAT])
+OPTION_DEFAULT_ENABLE([fs_ebpf], [ENABLE_FS_EBPF])
 OPTION_DEFAULT_ENABLE([procdiskstats], [ENABLE_PROCDISKSTATS])
 OPTION_DEFAULT_DISABLE([cray_system_sampler], [ENABLE_CRAY_SYSTEM_SAMPLER])
 dnl spaceless names in the cray_system_sampler. Default is with spaces for reverse compatibility
@@ -932,6 +933,40 @@ AC_ARG_ENABLE([slingshot_switch],
     [],
     [enable_slingshot_switch="check"])
 AM_CONDITIONAL([ENABLE_SLINGSHOT_SWITCH], [test "x$enable_slingshot_switch" != xno])
+		  
+AC_ARG_WITH([libbpf],
+      AC_HELP_STRING([--with-libbpf], [Specify libbpf location]),
+        [AS_IF([test -d "$withval/src"], [LIB_BPF="$withval" have_libbpf=yes],
+          AC_MSG_ERROR([libbpf not found at $withval]))],
+          AC_MSG_ERROR([must specify --with-libbpf]), [have_libbpf=no])
+
+
+# If libbpf was specified, then do the checks
+AS_IF([test "x$have_libbpf" = "xyes"],
+    [
+        # Save current flags
+        old_LDFLAGS=$LDFLAGS
+        LDFLAGS="$LDFLAGS -L${LIB_BPF}/src"
+
+        # Check for specific functions
+        AC_CHECK_LIB([bpf], [bpf_obj_get], [],
+            AC_MSG_ERROR([bpf_obj_get() not found. Required for libbpf.]))
+        AC_CHECK_LIB([bpf], [bpf_object__open], [],
+            AC_MSG_ERROR([bpf_object__open() not found. Required for libbpf.]))
+
+        # Check for header
+        AC_CHECK_HEADER([bpf/bpf.h], [],
+            [AC_MSG_ERROR([<bpf/bpf.h> not found. Required for libbpf.])])
+
+        # Restore old flags
+        LDFLAGS=$old_LDFLAGS
+    ])
+
+AC_SUBST([LIB_BPF])
+
+# You can also create a conditional for use in Makefile.am
+AM_CONDITIONAL([HAVE_LIBBPF], [test "x$have_libbpf" = "xyes"])
+
 
 # define substitutions for configvars and other sed-generated files.
 # note carefully the escapes.
@@ -1093,6 +1128,7 @@ ldms/src/sampler/procstat/Makefile
 ldms/src/sampler/procstat2/Makefile
 ldms/src/sampler/loadavg/Makefile
 ldms/src/sampler/vmstat/Makefile
+ldms/src/sampler/ebpf_sampler/Makefile
 ldms/src/sampler/coretemp/Makefile
 ldms/src/sampler/examples/Makefile
 ldms/src/sampler/examples/array_example/Makefile

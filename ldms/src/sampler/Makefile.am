@@ -98,6 +98,11 @@ endif
 if ENABLE_VMSTAT
 SUBDIRS += vmstat
 endif
+
+if HAVE_LIBBPF
+SUBDIRS += ebpf_sampler
+endif
+
 if ENABLE_LOADAVG
 SUBDIRS += loadavg
 endif
