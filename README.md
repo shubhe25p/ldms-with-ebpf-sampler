@@ -25,6 +25,11 @@ ldmsd -x sock:10444 -c sampler.conf -l /tmp/demo_ldmsd.log -v DEBUG -r $(pwd)/ld
 ldms_ls -h localhost -x sock -p 10444 -l -v
 ```
 
+## ebpf sampler output
+
+<img width="1408" alt="Screenshot 2024-12-07 at 12 52 29 AM" src="https://github.com/user-attachments/assets/2fac32ac-275f-426c-b59c-c2cd54f06129">
+
+
 # OVIS / LDMS
 
 OVIS is a modular system for HPC data collection, transport, storage,
