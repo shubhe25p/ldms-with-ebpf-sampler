@@ -44,8 +44,9 @@ char* makeFS_BKT_KEY(struct key_t next_key){
 			 int fslen = strlen(next_key.fsname);
 			next_key.fsname[fslen] = '_';
 			int rev=0, flag=0, bucket=next_key.bucket;
-			if(bucket%10==0)
+			if(bucket%10==0){
 				flag=1;
+			}
 			while(bucket){
 				int rem = bucket%10;
 				rev = rev*10+rem;
@@ -64,7 +65,7 @@ char* makeFS_BKT_KEY(struct key_t next_key){
 				next_key.fsname[i]='0';
 				next_key.fsname[i+1]='\0';
 			}
-			
+			msglog(LDMSD_LDEBUG, SAMP ": make fs_key: %s\n", next_key.fsname);
 			return next_key.fsname;
 			
 }
@@ -96,17 +97,17 @@ static int create_metric_set(base_data_t base)
 	msglog(LDMSD_LDEBUG, SAMP ": map opened successfully\n");
 	metric_offset = ldms_schema_metric_count_get(schema);
 
-	rc = ldms_schema_metric_add(schema, "FILESYSTEM", LDMS_V_U64);
-	if (rc < 0)
-		goto err;
+	// rc = ldms_schema_metric_add(schema, "FILESYSTEM", LDMS_V_U64);
+	// if (rc < 0)
+	// 	goto err;
 	
-	rc = ldms_schema_metric_add(schema, "BUCKET", LDMS_V_U64);
-	if(rc < 0)
-		goto err;
+	// rc = ldms_schema_metric_add(schema, "BUCKET", LDMS_V_U64);
+	// if(rc < 0)
+	// 	goto err;
 
-	rc = ldms_schema_metric_add(schema, "COUNT", LDMS_V_U64);
-	if(rc < 0)
-		goto err;
+	// rc = ldms_schema_metric_add(schema, "COUNT", LDMS_V_U64);
+	// if(rc < 0)
+	// 	goto err;
 // Create record definition for filesystem metrics
 
 // Populate record with metrics from eBPF map
@@ -253,8 +254,7 @@ struct metric_indices *current = indices_head;
 while (current) {
     if (strcmp(current->key, fs_bkt_key) == 0) {
 		v.v_u64 = value;
-        ldms_metric_set(set, metric_no, &v);
-		metric_no++;
+        ldms_metric_set(set, current->idx, &v);
 msglog(LDMSD_LDEBUG, SAMP ": filesystem_bkt: %s -- count  %d\n", fs_bkt_key, value);
         break;
     }
