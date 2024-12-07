@@ -1,4 +1,29 @@
 [![status](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ldms-test/weekly-report/master/status.json)](https://github.com/ldms-test/weekly-report/blob/master/summary.md)
+## instructions to build ldms for ebpf sampling
+```
+sh autogen.sh
+CC=clang CXX=clang++ ./configure --with-libbpf=/path/to/libbpf --prefix=/path/to/install/folder
+make
+make install
+```
+## instructions to set up ebpf scripts
+```
+sudo python3 ebpf_bcc_script.py
+sudo bpftool map list
+sudo bpftool map pin id #map_id_to_pin /sys/fs/bpf/fshist
+```
+
+## sampler conf
+```
+load name=ebpfsampler
+config name=ebpfsampler producer=${HOSTNAME} instance=${HOSTNAME}/ebpfsampler
+start name=ebpfsampler interval=1000000 offset=0
+```
+## instructions to run ebpf sampler
+```
+ldmsd -x sock:10444 -c sampler.conf -l /tmp/demo_ldmsd.log -v DEBUG -r $(pwd)/ldmsd.pid
+ldms_ls -h localhost -x sock -p 10444 -l -v
+```
 
 # OVIS / LDMS
 

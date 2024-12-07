@@ -30,10 +30,45 @@ static ldmsd_msg_log_f msglog;
 #define SAMP "EBPF_SAMPLER"
 static int metric_offset;
 static base_data_t base;
-
+struct metric_indices {
+    char *key;
+    int idx;
+    struct metric_indices *next;  // or use a proper hashmap
+};
 static int map_fd;
-
+static struct metric_indices *indices_head = NULL;
+static int list_idx;
 #define LBUFSZ 256
+char* makeFS_BKT_KEY(struct key_t next_key){
+			
+			 int fslen = strlen(next_key.fsname);
+			next_key.fsname[fslen] = '_';
+			int rev=0, flag=0, bucket=next_key.bucket;
+			if(bucket%10==0)
+				flag=1;
+			while(bucket){
+				int rem = bucket%10;
+				rev = rev*10+rem;
+				bucket = bucket/10;
+			}
+			bucket = rev;
+			int i=fslen+1;
+			while(bucket){
+				int rem = bucket%10;
+				next_key.fsname[i]=rem+'0';
+				i++;
+				bucket = bucket/10;
+			}
+			next_key.fsname[i] = '\0';
+			if(flag){
+				next_key.fsname[i]='0';
+				next_key.fsname[i+1]='\0';
+			}
+			
+			return next_key.fsname;
+			
+}
+
 static int create_metric_set(base_data_t base)
 {
     //create an ldms list with record and the only metric is count
@@ -43,8 +78,6 @@ static int create_metric_set(base_data_t base)
 	char *s;
 	char lbuf[LBUFSZ];
 	char metric_name[LBUFSZ];
-
-	ldms_record_t rec_def;
 
 	schema = base_schema_new(base);
 	if (!schema) {
@@ -63,28 +96,52 @@ static int create_metric_set(base_data_t base)
 	msglog(LDMSD_LDEBUG, SAMP ": map opened successfully\n");
 	metric_offset = ldms_schema_metric_count_get(schema);
 
-	rc = ldms_schema_record_add(schema, rec_def);
+	rc = ldms_schema_metric_add(schema, "FILESYSTEM", LDMS_V_U64);
+	if (rc < 0)
+		goto err;
+	
+	rc = ldms_schema_metric_add(schema, "BUCKET", LDMS_V_U64);
 	if(rc < 0)
 		goto err;
 
-	rc = ldms_schema_metric_list_add(schema, "filesystems", NULL, 1024);
+	rc = ldms_schema_metric_add(schema, "COUNT", LDMS_V_U64);
 	if(rc < 0)
 		goto err;
+// Create record definition for filesystem metrics
 
+// Populate record with metrics from eBPF map
+__u64 value;
+    int index;
+    struct key_t key, next_key;
+memset(&key, 0, sizeof(key));
 
-
-
-
-
-	set = base_set_new(base);
+//Loop through eBPF map to add metrics to record definition
+while (bpf_map_get_next_key(map_fd, &key, &next_key) == 0) {
+    if (bpf_map_lookup_elem(map_fd, &next_key, &value) == 0) {
+        char* fs_bkt_key = makeFS_BKT_KEY(next_key);
+		
+        // // Add metric to record definition - no unit needed for filesystem metrics
+        index = ldms_schema_metric_add(schema, fs_bkt_key, LDMS_V_U64);
+		
+		struct metric_indices *new_index = malloc(sizeof(struct metric_indices));
+        new_index->key = strdup(fs_bkt_key);  // Make a copy of the key
+        new_index->idx = index;
+        new_index->next = indices_head;
+        indices_head = new_index;
+		msglog(LDMSD_LDEBUG, SAMP ": linked list node created for: %s with index %d\n", new_index->key, new_index->idx);
+    }
+    key = next_key;
+}
+set = base_set_new(base);
 	if (!set) {
 		rc = errno;
 		goto err;
 	}
 	return 0;
 
+
  err:
-	ldms_record_delete(rec_def);
+	
 	base_schema_delete(base);
 	return rc;
 }
@@ -151,7 +208,6 @@ static ldms_set_t get_set(struct ldmsd_sampler *self)
 {
 	return set;
 }
-
 static int sample(struct ldmsd_sampler *self)
 {
     // for each sample, adjust records and store count metric, dont know if atomics needed? 
@@ -163,7 +219,12 @@ static int sample(struct ldmsd_sampler *self)
     __u64 value;
     int index;
     struct key_t key, next_key;
-
+	/*
+			here in the sample search for the metric
+			in the record and if found, update the value for it
+			if not found then resize set and allocate new space 
+			for a new record and append it, everything in a transaction	
+	 */
     if (!set) {
 		msglog(LDMSD_LDEBUG, SAMP ": plugin not initialized\n");
 		return EINVAL;
@@ -174,36 +235,32 @@ static int sample(struct ldmsd_sampler *self)
 
     ldms_transaction_begin(set);
 
-    memset(&key, 0, sizeof(key));
+        memset(&key, 0, sizeof(key));
     while (bpf_map_get_next_key(map_fd, &key, &next_key) == 0) {
         if (bpf_map_lookup_elem(map_fd, &next_key, &value) == 0) {
-             index = ldms_metric_by_name(set, "FILESYSTEM");
-             ldms_metric_array_set_str(set, index, next_key.fsname);
-             index = ldms_metric_by_name(set, "BUCKET");
-             ldms_metric_set_u64(set, index, next_key.bucket);
-             index = ldms_metric_by_name(set, "COUNT");
-             ldms_metric_set_u64(set, index, value);
-			msglog(LDMSD_LDEBUG, SAMP ": filesystem: %s -- bucket %d -- count  %d\n", next_key.fsname, next_key.bucket, value);
-			 char temp[32];
-			 memcpy(temp, next_key.fsname, sizeof(next_key.fsname));
-			 int fslen = strlen(temp);
-			temp[fslen] = '_';
-			int rev=0;
-			while(value){
-				int rem = value%10;
-				rev = rev*10+rem;
-				value = value/10;
-			}
-			value = rev;
-			int i=fslen+1;
-			while(value){
-				int rem = value%10;
-				temp[i]=rem+'0';
-				i++;
-				value = value/10;
-			}
-			temp[i] = '\0';
-			msglog(LDMSD_LDEBUG, SAMP ": filesystem_bucket: %s", temp);
+
+            //  index = ldms_metric_by_name(set, "FILESYSTEM");
+            //  ldms_metric_array_set_str(set, index, next_key.fsname);
+            //  index = ldms_metric_by_name(set, "BUCKET");
+            //  ldms_metric_set_u64(set, index, next_key.bucket);
+            //  index = ldms_metric_by_name(set, "COUNT");
+            //  ldms_metric_set_u64(set, index, value);
+			
+			 //char* temp = makeFS_BKT_KEY(next_key);
+char* fs_bkt_key = makeFS_BKT_KEY(next_key);
+// // // Find the stored index for this key
+struct metric_indices *current = indices_head;
+while (current) {
+    if (strcmp(current->key, fs_bkt_key) == 0) {
+		v.v_u64 = value;
+        ldms_metric_set(set, metric_no, &v);
+		metric_no++;
+msglog(LDMSD_LDEBUG, SAMP ": filesystem_bkt: %s -- count  %d\n", fs_bkt_key, value);
+        break;
+    }
+    current = current->next;
+}
+// free(fs_bkt_key);
 
         }
         key = next_key;
