@@ -1,8 +1,8 @@
-[![status](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ldms-test/weekly-report/master/status.json)](https://github.com/ldms-test/weekly-report/blob/master/summary.md)
+
 ## instructions to build ldms for ebpf sampling
 ```
 sh autogen.sh
-CC=clang CXX=clang++ ./configure --with-libbpf=/path/to/libbpf --prefix=/path/to/install/folder
+CC=clang CXX=clang++ ./configure --with-libbpf=/path/to/libbpf_folder --prefix=/path/to/install/folder
 make
 make install
 ```
