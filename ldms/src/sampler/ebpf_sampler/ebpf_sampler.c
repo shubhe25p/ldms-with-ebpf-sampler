@@ -12,8 +12,6 @@
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
-#include <linux/dcache.h>   // for DNAME_INLINE_LEN
-#include <linux/sched.h>    // for TASK_COMM_LEN
 
 #include "ldms.h"
 #include "ldmsd.h"
@@ -28,8 +26,8 @@ struct key_t {
     __u32 sz;
     char fstype[16]; /* arbitrary choice for file system type, no fs would have this greater than 16 chars */
     char msrc[16];   /* arbitrary choice for mount-source, makes no sense */
-    char name[DNAME_INLINE_LEN];
-    char comm[TASK_COMM_LEN];
+    char name[32];
+    char comm[16];
 };
 
 #define PIN_PATH "/sys/fs/bpf/fshist"
