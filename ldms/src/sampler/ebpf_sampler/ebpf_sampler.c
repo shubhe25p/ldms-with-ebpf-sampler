@@ -12,6 +12,7 @@
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
+#include <linux/sched.h>
 
 #include "ldms.h"
 #include "ldmsd.h"
