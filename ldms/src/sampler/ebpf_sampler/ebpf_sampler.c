@@ -18,8 +18,16 @@
 #include "sampler_base.h"
 
 struct key_t {
-        char fsname[32];
-        __u64 bucket;
+    __u64 bucket;
+    __u64 ts;
+    __u64 delta_us;
+    __u64 throughput;
+    __u32 pid;
+    __u32 sz;
+    char fstype[16]; /* arbitrary choice for file system type, no fs would have this greater than 16 chars */
+    char msrc[16];   /* arbitrary choice for mount-source, makes no sense */
+    char name[DNAME_INLINE_LEN];
+    char comm[TASK_COMM_LEN];
 };
 
 #define PIN_PATH "/sys/fs/bpf/fshist"
