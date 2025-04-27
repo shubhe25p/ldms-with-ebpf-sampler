@@ -51,7 +51,7 @@ static size_t metric_cnt = 0;
 char *make_key(struct key_t *k) {
         char *name = malloc(80);
         if (!name) return NULL;
-        snprintf(name, 80, "fs_%s_bkt%llu", k->fsname, k->bucket);
+        snprintf(name, 80, "fs_%s_bkt%llu", k->msrc, k->bucket);
         return name;
 }
 
