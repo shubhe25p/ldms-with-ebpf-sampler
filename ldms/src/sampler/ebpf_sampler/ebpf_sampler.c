@@ -87,6 +87,7 @@ static int create_metric_set(base_data_t base) {
                 metric_cnt++;
                 cur = next;
         }
+        msglog(LDMSD_LDEBUG, SAMP "Total number of metrics: %d\n", metric_cnt);
         if (metric_cnt == 0) return ENOENT;
 
         /* Allocate cache */
@@ -98,6 +99,7 @@ static int create_metric_set(base_data_t base) {
         while (bpf_map_get_next_key(map_fd, &cur, &next) == 0) {
                 if (bpf_map_lookup_elem(map_fd, &next, &value) == 0) {
                         char *mname = make_key(&next);
+                        msglog(LDMSD_LDEBUG, SAMP "Key created %s\n", mname);
                         int midx =
                             ldms_schema_metric_add(schema, mname, LDMS_V_U64);
                         free(mname);
