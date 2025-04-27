@@ -12,7 +12,8 @@
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
-#include <linux/sched.h>
+#include <linux/dcache.h>   // for DNAME_INLINE_LEN
+#include <linux/sched.h>    // for TASK_COMM_LEN
 
 #include "ldms.h"
 #include "ldmsd.h"
