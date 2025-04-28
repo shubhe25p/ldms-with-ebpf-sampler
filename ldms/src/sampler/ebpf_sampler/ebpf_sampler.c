@@ -18,16 +18,10 @@
 #include "sampler_base.h"
 
 struct key_t {
-    __u64 bucket;
-    __u64 ts;
-    __u64 delta_us;
-    __u64 throughput;
-    __u32 pid;
-    __u32 sz;
     char fstype[16]; /* arbitrary choice for file system type, no fs would have this greater than 16 chars */
     char msrc[16];   /* arbitrary choice for mount-source, makes no sense */
-    char name[32];
-    char comm[16];
+    __u64 bucket;
+    __u64 ts;
 };
 
 #define PIN_PATH "/sys/fs/bpf/fshist"
@@ -51,7 +45,9 @@ static size_t metric_cnt = 0;
 char *make_key(struct key_t *k) {
         char *name = malloc(80);
         if (!name) return NULL;
-        snprintf(name, 80, "fs_%s_bkt%llu", k->msrc, k->bucket);
+        msglog(LDMSD_LDEBUG, SAMP "key to be created with fstype: %s, msrc: %s, bucket: %d\n", 
+            k->fstype, k->msrc, k->bucket);
+        snprintf(name, 80, "fs_%s_%s_bkt%llu", k->fstype, k->msrc, k->bucket);
         return name;
 }
 
