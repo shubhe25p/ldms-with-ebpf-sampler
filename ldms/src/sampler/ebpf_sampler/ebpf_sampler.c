@@ -45,7 +45,7 @@ static size_t metric_cnt = 0;
 char *make_key(struct key_t *k) {
         char *name = malloc(80);
         if (!name) return NULL;
-        msglog(LDMSD_LDEBUG, SAMP "key to be created with fstype: %s, msrc: %s, bucket: %d\n", 
+        msglog(LDMSD_LDEBUG, SAMP ": key will be created with fstype: %s, msrc: %s, bucket: %d\n", 
             k->fstype, k->msrc, k->bucket);
         snprintf(name, 80, "fs_%s_%s_bkt%llu", k->fstype, k->msrc, k->bucket);
         return name;
@@ -95,7 +95,8 @@ static int create_metric_set(base_data_t base) {
         while (bpf_map_get_next_key(map_fd, &cur, &next) == 0) {
                 if (bpf_map_lookup_elem(map_fd, &next, &value) == 0) {
                         char *mname = make_key(&next);
-                        msglog(LDMSD_LDEBUG, SAMP "Key created %s\n", mname);
+                        msglog(LDMSD_LDEBUG, SAMP ": Key created %s\n", mname);
+                        // make sure to keep key unique or else ldms will crash ;|
                         int midx =
                             ldms_schema_metric_add(schema, mname, LDMS_V_U64);
                         free(mname);
